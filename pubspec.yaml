@@ -40,6 +40,8 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
+  # Animation
+  carousel_slider: ^4.2.1
 
   # Fonts
   google_fonts: ^6.1.0
