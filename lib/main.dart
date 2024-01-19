@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:showtime/playMovie.dart';
+import 'package:showtime/Views/playMovie.dart';
 
 void main() {
   runApp(const MyApp());

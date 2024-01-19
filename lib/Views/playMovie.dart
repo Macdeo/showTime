@@ -1,7 +1,13 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:showtime/Config/configColor.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:carousel_slider/carousel_slider.dart';
+import 'package:showtime/Models/starDisplay.dart';
+import 'package:showtime/Views/movie.dart';
+import 'package:showtime/Widgets/relatedMovies.dart';
+import 'package:awesome_ripple_animation/awesome_ripple_animation.dart';
+
 
 class PlayMovie extends StatefulWidget {
   const PlayMovie({super.key});
@@ -16,30 +22,27 @@ class _PlayMovieState extends State<PlayMovie> {
 
   final List<List<String>> relatedMovieImage = [
     [
+      'Avatar 2',
+      'https://wallpapersmug.com/download/1024x768/30d02e/avatar-the-way-of-water-movie.jpg'
+    ],
+    [
+      'Rebel Moon',
+      'https://geeko-media.lesoir.be/wp-content/uploads/2023/11/Rebel-Moon-1068x580.jpg'
+    ],
+    [
+      'Indiana Jones',
+      'https://thecrimsonwhite.com/wp-content/uploads/2023/07/FxbxEb9aEAAqpOS.webp'
+    ],
+    [
       'Oppenheimer',
       'https://www.radiofrance.fr/s3/cruiser-production/2023/08/77d9c0e6-37ec-41c3-bb4e-c1902017302f/1200x680_sc_oppenheimer.jpg'
     ],
     [
-      'Rebel Moon',
-      'https://geeko-media.lesoir.be/wp-content/uploads/2023/11/Rebel-Moon-1068x580.jpg'
-    ],
-    [
-      'Rebel Moon',
-      'https://geeko-media.lesoir.be/wp-content/uploads/2023/11/Rebel-Moon-1068x580.jpg'
-    ],
-    [
-      'Rebel Moon',
-      'https://geeko-media.lesoir.be/wp-content/uploads/2023/11/Rebel-Moon-1068x580.jpg'
-    ],
-    [
-      'Rebel Moon',
-      'https://geeko-media.lesoir.be/wp-content/uploads/2023/11/Rebel-Moon-1068x580.jpg'
-    ],
-    [
-      'Rebel Moon',
-      'https://geeko-media.lesoir.be/wp-content/uploads/2023/11/Rebel-Moon-1068x580.jpg'
+      'Sonic 2',
+      'https://cdn.mobilesyrup.com/wp-content/uploads/2022/05/sonic-the-hedgehog-2-scaled.jpg'
     ],
   ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -103,12 +106,36 @@ class _PlayMovieState extends State<PlayMovie> {
                               ],
                             ),
                           ),
-                          IconButton(
-                            onPressed: () {},
-                            icon: Icon(
-                              Icons.play_circle_fill_rounded,
-                              color: ConfigColor.secondary,
-                              size: MediaQuery.sizeOf(context).width * 0.18,
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                            child: IconButton(
+                              onPressed: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => const Movie()));
+                              },
+                              icon: Stack(
+                                children: [
+                                  Positioned.fill(child: RippleAnimation(
+                                    size: const Size(5, 5),
+                                    repeat: true,
+                                    color: ConfigColor.secondary,
+                                    minRadius: 30,
+                                    ripplesCount: 5,
+                                    child: const SizedBox(),
+                                  )),
+                                  CircleAvatar(
+                                    backgroundColor: ConfigColor.secondary,
+                                    radius: 32,
+                                    child: Icon(
+                                      Icons.play_arrow_rounded,
+                                      color: ConfigColor.primary,
+                                      size: MediaQuery.sizeOf(context).width * 0.15,
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ],
@@ -214,75 +241,36 @@ class _PlayMovieState extends State<PlayMovie> {
                     ),
                   ),
                   const SizedBox(
-                    height: 20,
+                    height: 30,
                   ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                    child: Text(
-                      'RELATED',
-                      style: GoogleFonts.ubuntu(
-                          color: Colors.white,
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold),
-                    ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                        child: Text(
+                          'Related',
+                          style: GoogleFonts.ubuntu(
+                              color: Colors.white,
+                              fontSize: 19,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                        child: Text(
+                          'See all',
+                          style: GoogleFonts.ubuntu(
+                            color: ConfigColor.secondary,
+                          ),
+                        ),
+                      )
+                    ],
                   ),
                   const SizedBox(
                     height: 20,
                   ),
-                  CarouselSlider(
-                    options: CarouselOptions(
-                      height: 250,
-                      viewportFraction: 0.7,
-                      enlargeCenterPage: true,
-                      enlargeFactor: 0.2,
-                    ),
-                    items: [1, 2, 3, 4, 5].map((i) {
-                      return Builder(
-                        builder: (BuildContext context) {
-                          return Container(
-                            width: MediaQuery.of(context).size.width,
-                            height: 500,
-                            margin: const EdgeInsets.symmetric(horizontal: 2.0),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.all(Radius.circular(10)),
-                                color: ConfigColor.secondary,
-                                image: DecorationImage(
-                                  fit: BoxFit.fitHeight,
-                                    image: NetworkImage(
-                                        relatedMovieImage[i - 1][1]))),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(vertical: 10.0),
-                                  child: Text(
-                                    relatedMovieImage[i - 1][0],
-                                    style: GoogleFonts.ubuntu(
-                                        fontSize: 26,
-                                        fontWeight: FontWeight.bold,
-                                        shadows: [
-                                          const Shadow(
-                                            offset: Offset(0, 5.0),
-                                            blurRadius: 2.0,
-                                            color: Colors.black,
-                                          ),
-                                          const Shadow(
-                                            offset: Offset(5.0, 0),
-                                            blurRadius: 2.0,
-                                            color: Colors.black,
-                                          ),
-                                        ],
-                                        color: ConfigColor.secondary),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          );
-                        },
-                      );
-                    }).toList(),
-                  ),
+                  RelatedMovies(relatedMovieImage: relatedMovieImage),
                   const SizedBox(
                     height: 30,
                   ),
@@ -292,25 +280,6 @@ class _PlayMovieState extends State<PlayMovie> {
           ),
         ],
       ),
-    );
-  }
-}
-
-class StarDisplay extends StatelessWidget {
-  final int value;
-  const StarDisplay({super.key, this.value = 0});
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      children: List.generate(5, (index) {
-        return Icon(
-          index < value ? Icons.star : Icons.star_border,
-          size: 16,
-          color: ConfigColor.secondary,
-        );
-      }),
     );
   }
 }
