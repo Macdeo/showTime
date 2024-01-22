@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:showtime/Config/configColor.dart';
 import 'package:video_player/video_player.dart';
 import 'package:chewie/chewie.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -18,12 +19,18 @@ class _MovieState extends State<Movie> {
   void initState() {
     super.initState();
 
-    _videoPlayerController = VideoPlayerController.networkUrl(
-        Uri.parse('https://meetdownload.com/7106ed76591b4cdf96fc1f25db448f92/waploaded-306-the-blackout-2019-mp4'));
+    _videoPlayerController =
+        VideoPlayerController.asset('assets/video/SPIDERMAN.mp4');
 
     _chewieController = ChewieController(
       videoPlayerController: _videoPlayerController,
-      aspectRatio: _videoPlayerController.value.aspectRatio,
+      autoPlay: true,
+      autoInitialize: true,
+      cupertinoProgressColors: ChewieProgressColors(
+          playedColor: ConfigColor.secondary,
+          handleColor: ConfigColor.secondary),
+      allowPlaybackSpeedChanging: false,
+      // aspectRatio: _videoPlayerController.value.aspectRatio,
     );
   }
 
@@ -37,16 +44,39 @@ class _MovieState extends State<Movie> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
       appBar: AppBar(
-        title: const Text('SpiderMan'),
+        leading: const BackButton(
+          color: Colors.white,
+        ),
+        backgroundColor: ConfigColor.primary,
+        title: Text(
+          'SpiderMan',
+          style: GoogleFonts.ubuntu(color: Colors.white),
+        ),
       ),
-      body: Center(
-        child:  AspectRatio(
-          aspectRatio: 16 / 9,
-          child: Chewie(
-            controller: _chewieController,
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Expanded(
+            flex: 1,
+            child: SizedBox(
+              height: MediaQuery.sizeOf(context).height * 0.2,
+            ),
           ),
-        ) ,
+          Expanded(
+            flex: 4,
+            child: Chewie(
+              controller: _chewieController,
+            ),
+          ),
+          Expanded(
+            flex: 3,
+            child: SizedBox(
+              height: MediaQuery.sizeOf(context).height * 0.2,
+            ),
+          )
+        ],
       ),
     );
   }
