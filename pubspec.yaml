@@ -43,9 +43,11 @@ dev_dependencies:
   # Animation
   carousel_slider: ^4.2.1
   awesome_ripple_animation: ^2.0.0
+  banner_carousel: ^1.2.1
 
   # Fonts
   google_fonts: ^6.1.0
+  font_awesome_flutter: ^10.6.0
 
   # Video
   video_player: ^2.8.2

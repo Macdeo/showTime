@@ -43,6 +43,9 @@ class _MovieState extends State<Movie> {
 
   @override
   Widget build(BuildContext context) {
+
+    Size size = MediaQuery.sizeOf(context);
+
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
@@ -61,7 +64,7 @@ class _MovieState extends State<Movie> {
           Expanded(
             flex: 1,
             child: SizedBox(
-              height: MediaQuery.sizeOf(context).height * 0.2,
+              height: size.height * 0.2,
             ),
           ),
           Expanded(
@@ -73,7 +76,7 @@ class _MovieState extends State<Movie> {
           Expanded(
             flex: 3,
             child: SizedBox(
-              height: MediaQuery.sizeOf(context).height * 0.2,
+              height: size.height * 0.2,
             ),
           )
         ],

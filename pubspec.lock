@@ -25,6 +25,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.0"
+  banner_carousel:
+    dependency: "direct dev"
+    description:
+      name: banner_carousel
+      sha256: "816a2be32e04f4be73224754f4646b94cbf6e9aa062bed9577691fcc6d62b48e"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.2.1"
   boolean_selector:
     dependency: transitive
     description:
@@ -144,6 +152,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  font_awesome_flutter:
+    dependency: "direct dev"
+    description:
+      name: font_awesome_flutter
+      sha256: "52671aea66da73b58d42ec6d0912b727a42248dd9a7c76d6c20f275783c48c08"
+      url: "https://pub.dev"
+    source: hosted
+    version: "10.6.0"
   google_fonts:
     dependency: "direct dev"
     description:

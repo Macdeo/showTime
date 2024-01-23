@@ -3,11 +3,11 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:showtime/Config/configColor.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:showtime/Models/movieData.dart';
 import 'package:showtime/Models/starDisplay.dart';
 import 'package:showtime/Views/movie.dart';
 import 'package:showtime/Widgets/relatedMovies.dart';
 import 'package:awesome_ripple_animation/awesome_ripple_animation.dart';
-
 
 class PlayMovie extends StatefulWidget {
   const PlayMovie({super.key});
@@ -17,34 +17,15 @@ class PlayMovie extends StatefulWidget {
 }
 
 class _PlayMovieState extends State<PlayMovie> {
+  MovieData movieData = MovieData();
   String description =
       'Miles Morales catapults across the multiverse, where he encounters a team of Spider-People charged with protecting its very existence.';
 
-  final List<List<String>> relatedMovieImage = [
-    [
-      'Avatar 2',
-      'https://wallpapersmug.com/download/1024x768/30d02e/avatar-the-way-of-water-movie.jpg'
-    ],
-    [
-      'Rebel Moon',
-      'https://geeko-media.lesoir.be/wp-content/uploads/2023/11/Rebel-Moon-1068x580.jpg'
-    ],
-    [
-      'Indiana Jones',
-      'https://thecrimsonwhite.com/wp-content/uploads/2023/07/FxbxEb9aEAAqpOS.webp'
-    ],
-    [
-      'Oppenheimer',
-      'https://www.radiofrance.fr/s3/cruiser-production/2023/08/77d9c0e6-37ec-41c3-bb4e-c1902017302f/1200x680_sc_oppenheimer.jpg'
-    ],
-    [
-      'Sonic 2',
-      'https://cdn.mobilesyrup.com/wp-content/uploads/2022/05/sonic-the-hedgehog-2-scaled.jpg'
-    ],
-  ];
-
   @override
   Widget build(BuildContext context) {
+
+    Size size = MediaQuery.sizeOf(context);
+
     return Scaffold(
       backgroundColor: ConfigColor.primary,
       body: Column(
@@ -53,7 +34,7 @@ class _PlayMovieState extends State<PlayMovie> {
           Stack(
             children: [
               SizedBox(
-                height: MediaQuery.sizeOf(context).height * 0.59,
+                height:size.height * 0.59,
                 width: double.infinity,
                 child: ShaderMask(
                   shaderCallback: (rect) {
@@ -76,8 +57,8 @@ class _PlayMovieState extends State<PlayMovie> {
                 ),
               ),
               Positioned(
-                  width: MediaQuery.sizeOf(context).width,
-                  top: MediaQuery.sizeOf(context).height * 0.36,
+                  width: size.width,
+                  top: size.height * 0.36,
                   child: Column(
                     children: [
                       Row(
@@ -107,7 +88,8 @@ class _PlayMovieState extends State<PlayMovie> {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 15.0),
                             child: IconButton(
                               onPressed: () {
                                 Navigator.push(
@@ -117,7 +99,8 @@ class _PlayMovieState extends State<PlayMovie> {
                               },
                               icon: Stack(
                                 children: [
-                                  Positioned.fill(child: RippleAnimation(
+                                  Positioned.fill(
+                                      child: RippleAnimation(
                                     size: const Size(5, 5),
                                     repeat: true,
                                     color: ConfigColor.secondary,
@@ -131,7 +114,8 @@ class _PlayMovieState extends State<PlayMovie> {
                                     child: Icon(
                                       Icons.play_arrow_rounded,
                                       color: ConfigColor.primary,
-                                      size: MediaQuery.sizeOf(context).width * 0.15,
+                                      size: size.width *
+                                          0.15,
                                     ),
                                   ),
                                 ],
@@ -192,16 +176,10 @@ class _PlayMovieState extends State<PlayMovie> {
                             ]),
                             TableRow(children: <Widget>[
                               const Center(
-                                child: IconTheme(
-                                  data: IconThemeData(
-                                    color: Colors.amber,
-                                    size: 48,
-                                  ),
-                                  child: Padding(
-                                    padding:
-                                        EdgeInsets.symmetric(vertical: 5.0),
-                                    child: StarDisplay(value: 3),
-                                  ),
+                                child: Padding(
+                                  padding:
+                                      EdgeInsets.symmetric(vertical: 5.0),
+                                  child: StarDisplay(value: 3),
                                 ),
                               ),
                               Center(
@@ -270,7 +248,12 @@ class _PlayMovieState extends State<PlayMovie> {
                   const SizedBox(
                     height: 20,
                   ),
-                  RelatedMovies(relatedMovieImage: relatedMovieImage),
+                  RelatedMovies(
+                    relatedMovieImage: movieData.relatedMovieImage,
+                    carouselHeight: 250,
+                    autoplay: false,
+                    playButton: 40,
+                  ),
                   const SizedBox(
                     height: 30,
                   ),
