@@ -5,6 +5,7 @@ import 'package:showtime/Models/movieCategories.dart';
 import 'package:showtime/Models/movieData.dart';
 import 'package:showtime/Views/playMovie.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:showtime/Widgets/movieCategories.dart';
 import 'package:showtime/Widgets/relatedMovies.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:banner_carousel/banner_carousel.dart';
@@ -152,27 +153,3 @@ class _HomeState extends State<Home> {
   }
 }
 
-class MovieCategories extends StatelessWidget {
-  final String categoryName;
-  const MovieCategories({super.key, required this.categoryName});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 5),
-      decoration: BoxDecoration(
-          color: ConfigColor.white.withOpacity(0.15),
-          borderRadius: const BorderRadius.all(Radius.circular(20))),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 5),
-        child: Text(
-          categoryName,
-          style: GoogleFonts.poppins(
-              color: ConfigColor.white,
-              fontWeight: FontWeight.w600,
-              fontSize: 13),
-        ),
-      ),
-    );
-  }
-}
