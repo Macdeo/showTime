@@ -5,10 +5,11 @@ import 'package:showtime/Models/movieCategories.dart';
 import 'package:showtime/Models/movieData.dart';
 import 'package:showtime/Views/playMovie.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:showtime/Widgets/movieCategories.dart';
+import 'package:showtime/Widgets/movieCategory.dart';
 import 'package:showtime/Widgets/relatedMovies.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:banner_carousel/banner_carousel.dart';
+import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -20,12 +21,54 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   MovieData movieData = MovieData();
   MovieCategory movieCategory = MovieCategory();
+  var _currentIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.sizeOf(context);
 
     return Scaffold(
       // drawer: const ProfileDrawer(),
+      extendBody: true,
+      bottomNavigationBar: SalomonBottomBar(
+        selectedItemColor: ConfigColor.white,
+        currentIndex: _currentIndex,
+        onTap: (i) => setState(() => _currentIndex = i),
+        items: [
+          /// Home
+          SalomonBottomBarItem(
+            icon: const Icon(Icons.home_filled),
+            title: Text("Home"),
+            selectedColor: ConfigColor.secondary,
+            unselectedColor: ConfigColor.white,
+          ),
+
+          /// Likes
+          SalomonBottomBarItem(
+            icon: Icon(Icons.favorite_border),
+            title: Text("Likes"),
+            selectedColor: ConfigColor.secondary,
+            unselectedColor: ConfigColor.white,
+          ),
+
+          /// Search
+          SalomonBottomBarItem(
+            icon: Icon(Icons.public),
+            title: Text("Discover"),
+            selectedColor: ConfigColor.secondary,
+            unselectedColor: ConfigColor.white,
+          ),
+
+          /// Profile
+          SalomonBottomBarItem(
+            icon: Icon(Icons.person),
+            title: Text("Profile"),
+            selectedColor: ConfigColor.secondary,
+            unselectedColor: ConfigColor.white,
+          ),
+        ],
+        backgroundColor: Colors.black.withOpacity(0.2),
+      ),
       body: Container(
         decoration: const BoxDecoration(
             gradient: LinearGradient(
@@ -124,7 +167,7 @@ class _HomeState extends State<Home> {
                 padding: const EdgeInsets.symmetric(horizontal: 10.0),
               ),
             ),
-            SizedBox(height: 25,),
+            const SizedBox(height: 25,),
             Padding(
               padding:
               const EdgeInsets.symmetric(horizontal: 16.0),
