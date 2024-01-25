@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:showtime/Config/configColor.dart';
 import 'package:showtime/Config/configText.dart';
+import 'package:showtime/Config/sectionTitle.dart';
 import 'package:showtime/Models/movieCategories.dart';
 import 'package:showtime/Models/movieData.dart';
 import 'package:showtime/Views/playMovie.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:showtime/Widgets/movieCategory.dart';
+import 'package:showtime/Widgets/movieGenres.dart';
 import 'package:showtime/Widgets/relatedMovies.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:banner_carousel/banner_carousel.dart';
@@ -120,12 +122,8 @@ class _HomeState extends State<Home> {
               ),
             ),
             ListTile(
-              title: Text(
-                'Trending Movies🍿',
-                style: GoogleFonts.poppins(
-                    color: ConfigColor.white,
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold),
+              title: const SectionTitle(
+                title: 'Trending Movies🍿',
               ),
               trailing: Text(
                 'See all',
@@ -145,14 +143,11 @@ class _HomeState extends State<Home> {
                 playButton: 20,
               ),
             ),
-            Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16),
-              child: Text('Categories',
-                  style: GoogleFonts.poppins(
-                      color: ConfigColor.white,
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold)),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 16),
+              child: SectionTitle(
+                title: 'Categories',
+              ),
             ),
             SizedBox(
               height: 30,
@@ -167,15 +162,20 @@ class _HomeState extends State<Home> {
                 padding: const EdgeInsets.symmetric(horizontal: 10.0),
               ),
             ),
-            const SizedBox(height: 25,),
-            Padding(
-              padding:
-              const EdgeInsets.symmetric(horizontal: 16.0),
-              child: Text('New Movies🍿',
-                  style: GoogleFonts.poppins(
-                      color: ConfigColor.white,
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold)),
+            const SizedBox(height: 25),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16.0),
+              child: SectionTitle(
+                title: 'Genres',
+              ),
+            ),
+            MovieGenres(movieData: movieData),
+            const SizedBox(height: 10),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16.0),
+              child: SectionTitle(
+                title: 'New Movies🍿',
+              ),
             ),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 15),
@@ -188,11 +188,10 @@ class _HomeState extends State<Home> {
                 banners: movieData.newMovies,
                 initialPage: 1,
               ),
-            )
+            ),
           ],
         )),
       ),
     );
   }
 }
-

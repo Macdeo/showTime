@@ -71,4 +71,31 @@ class MovieData {
       id: "7",
     ),
   ];
+
+  final List<List<String>> movieGenres = [
+    [
+      'Action',
+      'https://oyster.ignimgs.com/wordpress/stg.ign.com/2019/12/johnwickchapter3.jpg?fit=bounds&width=1280&height=720',
+    ],
+    [
+      'Animation',
+      'https://wallpapercave.com/wp/wp5290036.jpg',
+    ],
+    [
+      'Comedy',
+      'https://www.osn.com/getattachment/watch/hot-topics/osn-blogs/May-2018/Laugh-out-loud-with-our-top-comedy-movies/ted.jpg.aspx',
+    ],
+    [
+      'Adventure',
+      'https://thecinemaholic.com/wp-content/uploads/2017/08/jurassic-fallen-kingdom-trailer-1-970.jpg',
+    ],
+    [
+      'Sci-Fi',
+      'https://hips.hearstapps.com/hmg-prod/images/scale-1630514807.jpeg?resize=980:*',
+    ],
+    [
+      'Drama',
+      'https://i.insider.com/5a85c406d0307236008b4774?width=700',
+    ],
+  ];
 }
