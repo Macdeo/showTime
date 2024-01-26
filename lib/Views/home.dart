@@ -4,8 +4,11 @@ import 'package:showtime/Config/configText.dart';
 import 'package:showtime/Config/sectionTitle.dart';
 import 'package:showtime/Models/movieCategories.dart';
 import 'package:showtime/Models/movieData.dart';
+import 'package:showtime/Views/movie.dart';
 import 'package:showtime/Views/playMovie.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:showtime/Views/profile.dart';
+import 'package:showtime/Widgets/customBottomNavigation.dart';
 import 'package:showtime/Widgets/movieCategory.dart';
 import 'package:showtime/Widgets/movieGenres.dart';
 import 'package:showtime/Widgets/relatedMovies.dart';
@@ -32,7 +35,30 @@ class _HomeState extends State<Home> {
     return Scaffold(
       // drawer: const ProfileDrawer(),
       extendBody: true,
-      bottomNavigationBar: bottomNav(),
+      bottomNavigationBar: CustomBottomNavigationBar(
+      currentIndex: _currentIndex,
+      onTap: (index) {
+        setState(() {
+          _currentIndex = index;
+          switch (_currentIndex) {
+            case 0:
+              Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(builder: (context) => const Home()),
+                ModalRoute.withName('/'),
+              );
+              break;
+            case 3:
+              Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(builder: (context) => const Profile()),
+                ModalRoute.withName('/'),
+              );
+              break;
+          }
+        });
+      },
+    ),
       appBar: AppBar(
         backgroundColor: ConfigColor.primary,
         leading: const Padding(
@@ -53,7 +79,7 @@ class _HomeState extends State<Home> {
                   GoogleFonts.poppins(color: ConfigColor.white, fontSize: 13),
             ),
             Text(
-              'Claire Dupont',
+              ConfigText.userName,
               style: GoogleFonts.poppins(
                   color: ConfigColor.white,
                   fontSize: 22,
@@ -169,45 +195,4 @@ class _HomeState extends State<Home> {
     );
   }
 
-  SalomonBottomBar bottomNav() {
-    return SalomonBottomBar(
-      selectedItemColor: ConfigColor.white,
-      currentIndex: _currentIndex,
-      onTap: (i) => setState(() => _currentIndex = i),
-      items: [
-        /// Home
-        SalomonBottomBarItem(
-          icon: const Icon(Icons.home_filled),
-          title: const Text("Home"),
-          selectedColor: ConfigColor.secondary,
-          unselectedColor: ConfigColor.white,
-        ),
-
-        /// Likes
-        SalomonBottomBarItem(
-          icon: const Icon(Icons.favorite_border),
-          title: const Text("Likes"),
-          selectedColor: ConfigColor.secondary,
-          unselectedColor: ConfigColor.white,
-        ),
-
-        /// Search
-        SalomonBottomBarItem(
-          icon: const Icon(Icons.public),
-          title: const Text("Discover"),
-          selectedColor: ConfigColor.secondary,
-          unselectedColor: ConfigColor.white,
-        ),
-
-        /// Profile
-        SalomonBottomBarItem(
-          icon: const Icon(Icons.person),
-          title: const Text("Profile"),
-          selectedColor: ConfigColor.secondary,
-          unselectedColor: ConfigColor.white,
-        ),
-      ],
-      backgroundColor: Colors.black.withOpacity(0.2),
-    );
-  }
 }

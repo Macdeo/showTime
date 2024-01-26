@@ -55,6 +55,7 @@ dev_dependencies:
 
   # Others
   salomon_bottom_bar: ^3.3.2
+  babstrap_settings_screen: ^0.1.6
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
