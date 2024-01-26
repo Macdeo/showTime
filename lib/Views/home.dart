@@ -32,44 +32,53 @@ class _HomeState extends State<Home> {
     return Scaffold(
       // drawer: const ProfileDrawer(),
       extendBody: true,
-      bottomNavigationBar: SalomonBottomBar(
-        selectedItemColor: ConfigColor.white,
-        currentIndex: _currentIndex,
-        onTap: (i) => setState(() => _currentIndex = i),
-        items: [
-          /// Home
-          SalomonBottomBarItem(
-            icon: const Icon(Icons.home_filled),
-            title: Text("Home"),
-            selectedColor: ConfigColor.secondary,
-            unselectedColor: ConfigColor.white,
+      bottomNavigationBar: bottomNav(),
+      appBar: AppBar(
+        backgroundColor: ConfigColor.primary,
+        leading: const Padding(
+          padding: EdgeInsets.all(5.0),
+          child: CircleAvatar(
+            radius: 25,
+            backgroundImage: NetworkImage(
+                'https://images.pexels.com/photos/13033815/pexels-photo-13033815.jpeg'),
           ),
-
-          /// Likes
-          SalomonBottomBarItem(
-            icon: Icon(Icons.favorite_border),
-            title: Text("Likes"),
-            selectedColor: ConfigColor.secondary,
-            unselectedColor: ConfigColor.white,
+        ),
+        title: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Welcome back,',
+              style:
+                  GoogleFonts.poppins(color: ConfigColor.white, fontSize: 13),
+            ),
+            Text(
+              'Claire Dupont',
+              style: GoogleFonts.poppins(
+                  color: ConfigColor.white,
+                  fontSize: 22,
+                  fontWeight: FontWeight.bold),
+            ),
+          ],
+        ),
+        actions: const [
+          Icon(
+            Icons.notifications_none,
+            size: 28,
+            color: ConfigColor.white,
           ),
-
-          /// Search
-          SalomonBottomBarItem(
-            icon: Icon(Icons.public),
-            title: Text("Discover"),
-            selectedColor: ConfigColor.secondary,
-            unselectedColor: ConfigColor.white,
+          SizedBox(
+            width: 22,
           ),
-
-          /// Profile
-          SalomonBottomBarItem(
-            icon: Icon(Icons.person),
-            title: Text("Profile"),
-            selectedColor: ConfigColor.secondary,
-            unselectedColor: ConfigColor.white,
+          Padding(
+            padding: EdgeInsets.only(right: 16.0),
+            child: FaIcon(
+              FontAwesomeIcons.search,
+              color: ConfigColor.white,
+              size: 22,
+            ),
           ),
         ],
-        backgroundColor: Colors.black.withOpacity(0.2),
       ),
       body: Container(
         decoration: const BoxDecoration(
@@ -84,43 +93,6 @@ class _HomeState extends State<Home> {
         child: SafeArea(
             child: ListView(
           children: [
-            ListTile(
-              leading: const CircleAvatar(
-                radius: 25,
-                backgroundImage: NetworkImage(
-                    'https://images.pexels.com/photos/13033815/pexels-photo-13033815.jpeg'),
-              ),
-              title: Text(
-                'Welcome back,',
-                style:
-                    GoogleFonts.poppins(color: ConfigColor.white, fontSize: 13),
-              ),
-              subtitle: Text(
-                'Claire Dupont',
-                style: GoogleFonts.poppins(
-                    color: ConfigColor.white,
-                    fontSize: 22,
-                    fontWeight: FontWeight.bold),
-              ),
-              trailing: const Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Icon(
-                    Icons.notifications_none,
-                    size: 28,
-                    color: ConfigColor.white,
-                  ),
-                  SizedBox(
-                    width: 8,
-                  ),
-                  FaIcon(
-                    FontAwesomeIcons.search,
-                    color: ConfigColor.white,
-                    size: 22,
-                  ),
-                ],
-              ),
-            ),
             ListTile(
               title: const SectionTitle(
                 title: 'Trending Movies🍿',
@@ -143,26 +115,7 @@ class _HomeState extends State<Home> {
                 playButton: 20,
               ),
             ),
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 16),
-              child: SectionTitle(
-                title: 'Categories',
-              ),
-            ),
-            SizedBox(
-              height: 30,
-              child: ListView.builder(
-                itemBuilder: (context, index) {
-                  return MovieCategories(
-                    categoryName: movieCategory.categories[index],
-                  );
-                },
-                itemCount: movieCategory.categories.length,
-                scrollDirection: Axis.horizontal,
-                padding: const EdgeInsets.symmetric(horizontal: 10.0),
-              ),
-            ),
-            const SizedBox(height: 25),
+            const SizedBox(height: 20),
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 16.0),
               child: SectionTitle(
@@ -170,7 +123,28 @@ class _HomeState extends State<Home> {
               ),
             ),
             MovieGenres(movieData: movieData),
-            const SizedBox(height: 10),
+
+            // const Padding(
+            //   padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 16),
+            //   child: SectionTitle(
+            //     title: 'Categories',
+            //   ),
+            // ),
+            // SizedBox(
+            //   height: 30,
+            //   child: ListView.builder(
+            //     itemBuilder: (context, index) {
+            //       return MovieCategories(
+            //         categoryName: movieCategory.categories[index],
+            //       );
+            //     },
+            //     itemCount: movieCategory.categories.length,
+            //     scrollDirection: Axis.horizontal,
+            //     padding: const EdgeInsets.symmetric(horizontal: 10.0),
+            //   ),
+            // ),
+            //
+            const SizedBox(height: 20),
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 16.0),
               child: SectionTitle(
@@ -192,6 +166,48 @@ class _HomeState extends State<Home> {
           ],
         )),
       ),
+    );
+  }
+
+  SalomonBottomBar bottomNav() {
+    return SalomonBottomBar(
+      selectedItemColor: ConfigColor.white,
+      currentIndex: _currentIndex,
+      onTap: (i) => setState(() => _currentIndex = i),
+      items: [
+        /// Home
+        SalomonBottomBarItem(
+          icon: const Icon(Icons.home_filled),
+          title: const Text("Home"),
+          selectedColor: ConfigColor.secondary,
+          unselectedColor: ConfigColor.white,
+        ),
+
+        /// Likes
+        SalomonBottomBarItem(
+          icon: const Icon(Icons.favorite_border),
+          title: const Text("Likes"),
+          selectedColor: ConfigColor.secondary,
+          unselectedColor: ConfigColor.white,
+        ),
+
+        /// Search
+        SalomonBottomBarItem(
+          icon: const Icon(Icons.public),
+          title: const Text("Discover"),
+          selectedColor: ConfigColor.secondary,
+          unselectedColor: ConfigColor.white,
+        ),
+
+        /// Profile
+        SalomonBottomBarItem(
+          icon: const Icon(Icons.person),
+          title: const Text("Profile"),
+          selectedColor: ConfigColor.secondary,
+          unselectedColor: ConfigColor.white,
+        ),
+      ],
+      backgroundColor: Colors.black.withOpacity(0.2),
     );
   }
 }
