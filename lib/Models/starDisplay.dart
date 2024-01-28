@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:showtime/Config/configColor.dart';
 
 class StarDisplay extends StatelessWidget {
-  final int value;
+  final double value;
   const StarDisplay({super.key, this.value = 0});
 
   @override

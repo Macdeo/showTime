@@ -4,8 +4,6 @@ import 'package:showtime/Config/configText.dart';
 import 'package:showtime/Config/sectionTitle.dart';
 import 'package:showtime/Models/movieCategories.dart';
 import 'package:showtime/Models/movieData.dart';
-import 'package:showtime/Views/movie.dart';
-import 'package:showtime/Views/playMovie.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:showtime/Views/profile.dart';
 import 'package:showtime/Widgets/customBottomNavigation.dart';
@@ -14,7 +12,6 @@ import 'package:showtime/Widgets/movieGenres.dart';
 import 'package:showtime/Widgets/relatedMovies.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:banner_carousel/banner_carousel.dart';
-import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -74,9 +71,9 @@ class _HomeState extends State<Home> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Welcome back,',
+              ConfigText.welcomeMessage,
               style:
-                  GoogleFonts.poppins(color: ConfigColor.white, fontSize: 13),
+                  GoogleFonts.poppins(color: ConfigColor.white, fontSize: 15),
             ),
             Text(
               ConfigText.userName,
@@ -121,31 +118,25 @@ class _HomeState extends State<Home> {
           children: [
             ListTile(
               title: const SectionTitle(
-                title: 'Trending Movies🍿',
+                title: ConfigText.trendingMoviesTitle,
               ),
               trailing: Text(
-                'See all',
+                ConfigText.seeAll,
                 style: GoogleFonts.poppins(
                     color: ConfigColor.secondary, fontSize: 14),
               ),
             ),
-            InkWell(
-              onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => const PlayMovie()));
-              },
-              child: RelatedMovies(
-                relatedMovieImage: movieData.relatedMovieImage,
-                carouselHeight: 200,
-                autoplay: true,
-                playButton: 20,
-              ),
+            RelatedMovies(
+              relatedMovieImage: movieData.relatedMovieImage,
+              carouselHeight: 200,
+              autoplay: true,
+              playButton: 20,
             ),
             const SizedBox(height: 20),
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 16.0),
               child: SectionTitle(
-                title: 'Genres',
+                title: ConfigText.genresTitle,
               ),
             ),
             MovieGenres(movieData: movieData),
@@ -174,7 +165,7 @@ class _HomeState extends State<Home> {
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 16.0),
               child: SectionTitle(
-                title: 'New Movies🍿',
+                title: ConfigText.newMovies,
               ),
             ),
             Padding(

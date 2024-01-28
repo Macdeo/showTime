@@ -41,7 +41,7 @@ class _ProfileState extends State<Profile> {
               case 0:
                 Navigator.pushAndRemoveUntil(
                   context,
-                  MaterialPageRoute(builder: (context) => const Home()),
+                  MaterialPageRoute(builder: (context) => Home()),
                   ModalRoute.withName('/'),
                 );
                 break;
