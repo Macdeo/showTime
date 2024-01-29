@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:showtime/Config/configColor.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -9,9 +8,10 @@ import 'package:showtime/Views/movie.dart';
 import 'package:showtime/Widgets/relatedMovies.dart';
 import 'package:awesome_ripple_animation/awesome_ripple_animation.dart';
 import 'package:marquee/marquee.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class PlayMovie extends StatefulWidget {
-   const PlayMovie({super.key, required this.selectedMovie});
+  const PlayMovie({super.key, required this.selectedMovie});
   final int selectedMovie;
 
   @override
@@ -20,21 +20,19 @@ class PlayMovie extends StatefulWidget {
 
 class _PlayMovieState extends State<PlayMovie> {
   MovieData movieData = MovieData();
-  String description =
-      'Miles Morales catapults across the multiverse, where he encounters a team of Spider-People charged with protecting its very existence.';
-
 
   Widget movieTitleAnimation(String text) => SizedBox(
-    width: MediaQuery.sizeOf(context).width * 0.66,
-    child: Marquee(
-      text: text,
-      style: GoogleFonts.poppins(
-          fontSize: 24,
-          fontWeight: FontWeight.bold,
-          color: ConfigColor.white),
-      blankSpace: 50,
-    ),
-  );
+        width: MediaQuery.sizeOf(context).width * 0.66,
+        child: Marquee(
+          text: text,
+          style: GoogleFonts.poppins(
+              fontSize: 24,
+              fontWeight: FontWeight.bold,
+              color: ConfigColor.white),
+          blankSpace: 50,
+        ),
+      );
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.sizeOf(context);
@@ -105,24 +103,32 @@ class _PlayMovieState extends State<PlayMovie> {
                               mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                movieData.relatedMovieImage[widget.selectedMovie - 1][0].length > 10 ?
-                                    SizedBox(
-                                      width: size.width * 0.60,
-                                      height: 30,
-                                      child: movieTitleAnimation( movieData.relatedMovieImage[widget.selectedMovie - 1][0]),
-                                    ) :
-                                SizedBox(
-                                  width: size.width * 0.60,
-                                  child: Text(
-                                    movieData.relatedMovieImage[widget.selectedMovie - 1][0],
-                                    style: GoogleFonts.ubuntu(
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.white,
-                                        fontSize: 37),
-                                  ),
-                                ),
+                                movieData
+                                            .relatedMovieImage[
+                                                widget.selectedMovie - 1][0]
+                                            .length >
+                                        10
+                                    ? SizedBox(
+                                        width: size.width * 0.60,
+                                        height: 30,
+                                        child: movieTitleAnimation(
+                                            movieData.relatedMovieImage[
+                                                widget.selectedMovie - 1][0]),
+                                      )
+                                    : SizedBox(
+                                        width: size.width * 0.60,
+                                        child: Text(
+                                          movieData.relatedMovieImage[
+                                              widget.selectedMovie - 1][0],
+                                          style: GoogleFonts.ubuntu(
+                                              fontWeight: FontWeight.bold,
+                                              color: Colors.white,
+                                              fontSize: 37),
+                                        ),
+                                      ),
                                 Text(
-                                  movieData.relatedMovieImage[widget.selectedMovie - 1][3],
+                                  movieData.relatedMovieImage[
+                                      widget.selectedMovie - 1][3],
                                   style: GoogleFonts.ubuntu(
                                       color: Colors.white, fontSize: 15),
                                 )
@@ -172,19 +178,19 @@ class _PlayMovieState extends State<PlayMovie> {
                             TableRow(children: <Widget>[
                               Center(
                                   child: Text(
-                                ConfigText.rating,
+                                AppLocalizations.of(context)!.rating,
                                 style:
                                     GoogleFonts.ubuntu(color: Colors.white60),
                               )),
                               Center(
                                   child: Text(
-                                    ConfigText.age,
-                                    style:
+                                AppLocalizations.of(context)!.age,
+                                style:
                                     GoogleFonts.ubuntu(color: Colors.white60),
                               )),
                               Center(
                                   child: Text(
-                                    ConfigText.language,
+                                AppLocalizations.of(context)!.language,
                                 style:
                                     GoogleFonts.ubuntu(color: Colors.white60),
                               )),
@@ -192,7 +198,8 @@ class _PlayMovieState extends State<PlayMovie> {
                             TableRow(children: <Widget>[
                               Center(
                                   child: Text(
-                                    movieData.relatedMovieImage[widget.selectedMovie - 1][4],
+                                movieData.relatedMovieImage[
+                                    widget.selectedMovie - 1][4],
                                 style: GoogleFonts.ubuntu(
                                     color: Colors.white60,
                                     fontSize: 25,
@@ -200,7 +207,8 @@ class _PlayMovieState extends State<PlayMovie> {
                               )),
                               Center(
                                   child: Text(
-                                    movieData.relatedMovieImage[widget.selectedMovie - 1][5],
+                                movieData.relatedMovieImage[
+                                    widget.selectedMovie - 1][5],
                                 style: GoogleFonts.ubuntu(
                                     color: Colors.white60,
                                     fontSize: 25,
@@ -208,7 +216,8 @@ class _PlayMovieState extends State<PlayMovie> {
                               )),
                               Center(
                                   child: Text(
-                                    movieData.relatedMovieImage[widget.selectedMovie - 1][6],
+                                movieData.relatedMovieImage[
+                                    widget.selectedMovie - 1][6],
                                 style: GoogleFonts.ubuntu(
                                     color: Colors.white60,
                                     fontSize: 25,
@@ -216,22 +225,26 @@ class _PlayMovieState extends State<PlayMovie> {
                               )),
                             ]),
                             TableRow(children: <Widget>[
-                               Center(
+                              Center(
                                 child: Padding(
-                                  padding: const EdgeInsets.symmetric(vertical: 5.0),
-                                  child: StarDisplay(value: double.parse(movieData.relatedMovieImage[widget.selectedMovie - 1][4])),
+                                  padding:
+                                      const EdgeInsets.symmetric(vertical: 5.0),
+                                  child: StarDisplay(
+                                      value: double.parse(
+                                          movieData.relatedMovieImage[
+                                              widget.selectedMovie - 1][4])),
                                 ),
                               ),
                               Center(
                                   child: Text(
-                                    ConfigText.rating,
-                                    style: GoogleFonts.ubuntu(
+                                AppLocalizations.of(context)!.rating,
+                                style: GoogleFonts.ubuntu(
                                   color: Colors.white60,
                                 ),
                               )),
                               Center(
                                   child: Text(
-                                '+13 more',
+                                AppLocalizations.of(context)!.languageNumber,
                                 style: GoogleFonts.ubuntu(
                                   color: Colors.white60,
                                 ),
@@ -255,7 +268,8 @@ class _PlayMovieState extends State<PlayMovie> {
                       maxLines: 3,
                       overflow: TextOverflow.ellipsis,
                       text: TextSpan(
-                        text: movieData.relatedMovieImage[widget.selectedMovie - 1][7],
+                        text: movieData
+                            .relatedMovieImage[widget.selectedMovie - 1][7],
                         style: GoogleFonts.ubuntu(
                           color: Colors.white,
                         ),
@@ -271,7 +285,7 @@ class _PlayMovieState extends State<PlayMovie> {
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 10.0),
                         child: Text(
-                         ConfigText.related,
+                          AppLocalizations.of(context)!.related,
                           style: GoogleFonts.ubuntu(
                               color: Colors.white,
                               fontSize: 19,
@@ -281,7 +295,7 @@ class _PlayMovieState extends State<PlayMovie> {
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 10.0),
                         child: Text(
-                          ConfigText.seeAll,
+                          AppLocalizations.of(context)!.seeAll,
                           style: GoogleFonts.ubuntu(
                             color: ConfigColor.secondary,
                           ),

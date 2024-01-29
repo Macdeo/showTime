@@ -1,0 +1,39 @@
+
+{
+    "language": "English",
+    "@language": {
+        "description": "The default language"
+    },
+    "multiLanguage": "Multi Language",
+    "@multiLanguage": {
+            "description": "App title"
+    },
+    "appName": "Show Time🍿",
+    "homeTitle": "Movie Home",
+    "userName": "Claire Dupont",
+    "settingTitle": "Settings",
+    "seeAll": "See all",
+    "related": "Related",
+    "welcomeMessage": "Welcome back,",
+    "trendingMoviesTitle": "Trending Movies🍿",
+    "genresTitle": "Genres",
+    "newMovies": "New Movies🍿",
+    "rating": "Rating",
+    "language": "Language",
+    "age": "Age",
+    "homeNav": "Home",
+    "likesNav": "Likes",
+    "discoverNav": "Discover",
+    "profileNav": "Profile",
+    "modify": "Modify",
+    "changeData": "Tap to change your data",
+    "appearance": "Appearance",
+    "customizeApp": "Customize your app",
+    "darkMode": "Dark mode",
+    "automatic": "Automatic",
+    "about": "About",
+    "learnMoreOnApp": "Learn more about ShowTime App",
+    "signOut": "Sign Out",
+    "deleteAccount": "DeleteAccount",
+    "languageNumber": "+13 more"
+}

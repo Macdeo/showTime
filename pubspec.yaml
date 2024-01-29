@@ -54,6 +54,13 @@ dependencies:
   salomon_bottom_bar: ^3.3.2
   babstrap_settings_screen: ^0.1.6
 
+  # Language and Localization
+  flutter_localizations:
+    sdk: flutter
+  intl: ^0.18.1
+
+
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -72,6 +79,7 @@ dev_dependencies:
 
 # The following section is specific to Flutter packages.
 flutter:
+  generate: true
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in

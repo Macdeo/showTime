@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:babstrap_settings_screen/babstrap_settings_screen.dart';
 import 'package:showtime/Config/configColor.dart';
-import 'package:showtime/Config/configText.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:showtime/Widgets/customBottomNavigation.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 
 import 'home.dart';
 
@@ -27,7 +28,7 @@ class _ProfileState extends State<Profile> {
         backgroundColor: ConfigColor.primary,
         automaticallyImplyLeading: false,
         title: Text(
-          ConfigText.settingTitle,
+          AppLocalizations.of(context)!.settingTitle,
           style: GoogleFonts.poppins(
               fontWeight: FontWeight.bold, color: ConfigColor.white),
         ),
@@ -92,7 +93,7 @@ class _ProfileState extends State<Profile> {
                             ),
                           ),
                           Text(
-                            ConfigText.userName,
+                            AppLocalizations.of(context)!.userName,
                             style: GoogleFonts.poppins(
                                 fontSize: 30,
                                 fontWeight: FontWeight.bold,
@@ -121,12 +122,12 @@ class _ProfileState extends State<Profile> {
                               ),
                             ),
                             title: Text(
-                              'Modify',
+                              AppLocalizations.of(context)!.modify,
                               style: GoogleFonts.poppins(
                                 fontWeight: FontWeight.w600,
                               ),
                             ),
-                            subtitle: Text('Tap to change your data',
+                            subtitle: Text(AppLocalizations.of(context)!.changeData,
                                 style: GoogleFonts.poppins()),
                             trailing: const Icon(
                               Icons.arrow_forward_ios_rounded,
@@ -146,8 +147,8 @@ class _ProfileState extends State<Profile> {
                     onTap: () {},
                     icons: CupertinoIcons.pencil_outline,
                     iconStyle: IconStyle(),
-                    title: 'Appearance',
-                    subtitle: "Customize your app",
+                    title: AppLocalizations.of(context)!.appearance,
+                    subtitle: AppLocalizations.of(context)!.customizeApp,
                   ),
                   SettingsItem(
                     onTap: () {},
@@ -157,8 +158,8 @@ class _ProfileState extends State<Profile> {
                       withBackground: true,
                       backgroundColor: Colors.red,
                     ),
-                    title: 'Dark mode',
-                    subtitle: "Automatic",
+                    title: AppLocalizations.of(context)!.darkMode,
+                    subtitle: AppLocalizations.of(context)!.automatic,
                     trailing: Switch.adaptive(
                       value: true,
                       onChanged: (value) {},
@@ -174,8 +175,8 @@ class _ProfileState extends State<Profile> {
                     iconStyle: IconStyle(
                       backgroundColor: Colors.purple,
                     ),
-                    title: 'About',
-                    subtitle: "Learn more about ShowTime App",
+                    title: AppLocalizations.of(context)!.about,
+                    subtitle: AppLocalizations.of(context)!.learnMoreOnApp,
                   ),
                 ],
               ),
@@ -185,12 +186,12 @@ class _ProfileState extends State<Profile> {
                   SettingsItem(
                     onTap: () {},
                     icons: Icons.exit_to_app_rounded,
-                    title: "Sign Out",
+                    title: AppLocalizations.of(context)!.signOut,
                   ),
                   SettingsItem(
                     onTap: () {},
                     icons: CupertinoIcons.delete_solid,
-                    title: "Delete account",
+                    title: AppLocalizations.of(context)!.deleteAccount,
                     titleStyle: const TextStyle(
                       color: Colors.red,
                       fontWeight: FontWeight.bold,

@@ -54,7 +54,7 @@ class _MovieState extends State<Movie> {
         ),
         backgroundColor: ConfigColor.primary,
         title: Text(
-          'SpiderMan',
+          'Spiderman across the spider verse',
           style: GoogleFonts.ubuntu(color: Colors.white),
         ),
       ),

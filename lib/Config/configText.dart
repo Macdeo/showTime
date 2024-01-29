@@ -19,6 +19,12 @@ class ConfigText{
   static const String language = 'Language';
   static const String age = 'Age';
 
+//   BottomNavigator
+  static const String homeNav = 'Home';
+  static const String likesNav = 'Likes';
+  static const String discoverNav = 'Discover';
+  static const String profileNav = 'Profile';
+
 
 
 }

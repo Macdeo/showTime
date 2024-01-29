@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:showtime/Config/configColor.dart';
-import 'package:showtime/Config/configText.dart';
 import 'package:showtime/Config/sectionTitle.dart';
 import 'package:showtime/Models/movieCategories.dart';
 import 'package:showtime/Models/movieData.dart';
@@ -12,6 +11,7 @@ import 'package:showtime/Widgets/movieGenres.dart';
 import 'package:showtime/Widgets/relatedMovies.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:banner_carousel/banner_carousel.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -71,12 +71,12 @@ class _HomeState extends State<Home> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              ConfigText.welcomeMessage,
+              AppLocalizations.of(context)!.welcomeMessage,
               style:
                   GoogleFonts.poppins(color: ConfigColor.white, fontSize: 15),
             ),
             Text(
-              ConfigText.userName,
+              AppLocalizations.of(context)!.userName,
               style: GoogleFonts.poppins(
                   color: ConfigColor.white,
                   fontSize: 22,
@@ -117,11 +117,11 @@ class _HomeState extends State<Home> {
             child: ListView(
           children: [
             ListTile(
-              title: const SectionTitle(
-                title: ConfigText.trendingMoviesTitle,
+              title: SectionTitle(
+                title: AppLocalizations.of(context)!.trendingMoviesTitle,
               ),
               trailing: Text(
-                ConfigText.seeAll,
+                AppLocalizations.of(context)!.seeAll,
                 style: GoogleFonts.poppins(
                     color: ConfigColor.secondary, fontSize: 14),
               ),
@@ -133,10 +133,10 @@ class _HomeState extends State<Home> {
               playButton: 20,
             ),
             const SizedBox(height: 20),
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16.0),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: SectionTitle(
-                title: ConfigText.genresTitle,
+                title: AppLocalizations.of(context)!.genresTitle,
               ),
             ),
             MovieGenres(movieData: movieData),
@@ -162,10 +162,10 @@ class _HomeState extends State<Home> {
             // ),
             //
             const SizedBox(height: 20),
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16.0),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: SectionTitle(
-                title: ConfigText.newMovies,
+                title: AppLocalizations.of(context)!.newMovies,
               ),
             ),
             Padding(
